@@ -1,0 +1,157 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #d4af37;
+    --text-light: #7f8c8d;
+    --bg-light: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--primary-color);
+}
+
+.navbar {
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--primary-color) !important;
+}
+
+.nav-link {
+    font-weight: 300;
+    color: var(--primary-color) !important;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+    text-decoration: underline;
+}
+
+.hero {
+    height: 100vh;
+    background: url('../../img/1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 100;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 0;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.btn-primary:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.card {
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-title {
+    font-weight: 300;
+    color: var(--primary-color);
+}
+
+.price {
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.about-section {
+    background: var(--bg-light);
+}
+
+.contact-info {
+    background: var(--primary-color);
+    color: white;
+}
+
+.contact-info h3 {
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+}
+
+footer {
+    background: #1a252f;
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.menu-item {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+
