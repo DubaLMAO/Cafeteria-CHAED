@@ -23,76 +23,47 @@
     <div class="container">
         <h2 class="section-title">Nuestro Menú</h2>
         <div class="row">
+
+            <!-- Cafes-->
             <div class="col-lg-6">
                 <div class="card h-100">
                     <div class="card-body">
                         <h3 class="card-title">Cafés Especiales</h3>
+                        {% for cafe in cafes %}
                         <div class="menu-item d-flex justify-content-between">
                             <div>
-                                <h5>Espresso</h5>
-                                <p class="text-muted small">Café puro, intenso y aromático</p>
+                                <h5>{{ cafe.nombre }}</h5>
+                                <p class="text-muted small">{{ cafe.descripcion }}</p>
                             </div>
-                            <span class="price">$45</span>
+                            <span class="price">${{ cafe.precio }}</span>
                         </div>
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>Cappuccino</h5>
-                                <p class="text-muted small">Espresso con leche vaporizada</p>
-                            </div>
-                            <span class="price">$65</span>
-                        </div>
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>Latte</h5>
-                                <p class="text-muted small">Suave y cremoso</p>
-                            </div>
-                            <span class="price">$70</span>
-                        </div>
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>Americano</h5>
-                                <p class="text-muted small">Espresso diluido, sabor intenso</p>
-                            </div>
-                            <span class="price">$50</span>
-                        </div>
+                        {% empty %}
+                        <p>No hay cafés registrados aún.</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
+
+            <!-- Snacks-->
             <div class="col-lg-6">
                 <div class="card h-100">
                     <div class="card-body">
                         <h3 class="card-title">Pasteles & Snacks</h3>
+                        {% for snack in snacks %}
                         <div class="menu-item d-flex justify-content-between">
                             <div>
-                                <h5>Croissant</h5>
-                                <p class="text-muted small">Recién horneado, mantequilla francesa</p>
+                                <h5>{{ snack.nombre }}</h5>
+                                <p class="text-muted small">{{ snack.descripcion }}</p>
                             </div>
-                            <span class="price">$55</span>
+                            <span class="price">${{ snack.precio }}</span>
                         </div>
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>Muffin de Arándanos</h5>
-                                <p class="text-muted small">Esponjoso y natural</p>
-                            </div>
-                            <span class="price">$60</span>
-                        </div>
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>Tarta de Limón</h5>
-                                <p class="text-muted small">Fresca y delicada</p>
-                            </div>
-                            <span class="price">$75</span>
-                        </div>
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>Sándwich del Día</h5>
-                                <p class="text-muted small">Ingredientes frescos y locales</p>
-                            </div>
-                            <span class="price">$85</span>
-                        </div>
+                        {% empty %}
+                        <p>No hay snacks registrados aún.</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </section>
