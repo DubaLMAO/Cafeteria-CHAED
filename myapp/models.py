@@ -1,7 +1,6 @@
 from django.db import models
 
 #Menu de la cafeteria
-
 class Producto(models.Model):
     CATEGORIAS = [
         ('CAFE', 'Cafés Especiales'),
@@ -16,3 +15,4 @@ class Producto(models.Model):
     
     def __str__(self):
         return self.nombre
+    

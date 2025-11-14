@@ -2,10 +2,10 @@
 
 {% block title %}Inicio - Café CHAED{% endblock %}
 
-{% block content %} {#Se despliega el contenido del home#}
+{% block content %}
 
 <!--Hero Section -->
-<section id="home" class="hero" >
+<section id="home" class="hero">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -24,49 +24,94 @@
         <h2 class="section-title">Nuestro Menú</h2>
         <div class="row">
 
-            <!-- Cafes-->
+            <!-- Cafes -->
             <div class="col-lg-6">
                 <div class="card h-100">
                     <div class="card-body">
                         <h3 class="card-title">Cafés Especiales</h3>
+
                         {% for cafe in cafes %}
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>{{ cafe.nombre }}</h5>
-                                <p class="text-muted small">{{ cafe.descripcion }}</p>
+                        <div class="menu-item mb-4">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5>{{ cafe.nombre }}</h5>
+                                    <p class="text-muted small">{{ cafe.descripcion }}</p>
+                                </div>
+                                <span class="price">${{ cafe.precio }}</span>
                             </div>
-                            <span class="price">${{ cafe.precio }}</span>
+
+                            <!-- Calificación -->
+                            <div class="rating mt-2">
+                                <span class="text-muted small">Calificar:</span>
+
+                                <div class="stars mt-1" data-product="{{ cafe.nombre|slugify }}">
+                                    <button class="star-btn" data-rating="1">★</button>
+                                    <button class="star-btn" data-rating="2">★</button>
+                                    <button class="star-btn" data-rating="3">★</button>
+                                    <button class="star-btn" data-rating="4">★</button>
+                                    <button class="star-btn" data-rating="5">★</button>
+                                </div>
+
+                                <p class="mt-1 small text-primary votos" id="votos-{{ cafe.nombre|slugify }}">
+                                    Votos: 0
+                                </p>
+                            </div>
+
                         </div>
                         {% empty %}
                         <p>No hay cafés registrados aún.</p>
                         {% endfor %}
+
                     </div>
                 </div>
             </div>
 
-            <!-- Snacks-->
+            <!-- Snacks -->
             <div class="col-lg-6">
                 <div class="card h-100">
                     <div class="card-body">
                         <h3 class="card-title">Pasteles & Snacks</h3>
+
                         {% for snack in snacks %}
-                        <div class="menu-item d-flex justify-content-between">
-                            <div>
-                                <h5>{{ snack.nombre }}</h5>
-                                <p class="text-muted small">{{ snack.descripcion }}</p>
+                        <div class="menu-item mb-4">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5>{{ snack.nombre }}</h5>
+                                    <p class="text-muted small">{{ snack.descripcion }}</p>
+                                </div>
+                                <span class="price">${{ snack.precio }}</span>
                             </div>
-                            <span class="price">${{ snack.precio }}</span>
+
+                            <!-- Calificación -->
+                            <div class="rating mt-2">
+                                <span class="text-muted small">Calificar:</span>
+
+                                <div class="stars mt-1" data-product="{{ snack.nombre|slugify }}">
+                                    <button class="star-btn" data-rating="1">★</button>
+                                    <button class="star-btn" data-rating="2">★</button>
+                                    <button class="star-btn" data-rating="3">★</button>
+                                    <button class="star-btn" data-rating="4">★</button>
+                                    <button class="star-btn" data-rating="5">★</button>
+                                </div>
+
+                                <p class="mt-1 small text-primary votos" id="votos-{{ snack.nombre|slugify }}">
+                                    Votos: 0
+                                </p>
+                            </div>
+
                         </div>
                         {% empty %}
                         <p>No hay snacks registrados aún.</p>
                         {% endfor %}
+
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>
+
 
 <!--Sección de Acerca de -->
 <section id="about" class="py-5 about-section">
@@ -75,11 +120,8 @@
             <div class="col-lg-6">
                 <h2 class="section-title text-start">Nuestra Historia</h2>
                 <p class="lead">En Café CHAED creemos que la simplicidad es la máxima sofisticación.</p>
-                <p>Fundado en 2025 con la visión de crear un espacio donde el café de calidad se encuentra con el
-                    diseño minimalista. Cada taza es preparada con precisión, cada detalle pensado para tu
-                    comodidad.</p>
-                <p>Utilizamos granos seleccionados de productores locales, tostados artesanalmente para resaltar los
-                    sabores únicos de cada origen.</p>
+                <p>Fundado en 2025 con la visión de crear un espacio donde el café de calidad se encuentra con el diseño minimalista. Cada taza es preparada con precisión, cada detalle pensado para tu comodidad.</p>
+                <p>Utilizamos granos seleccionados de productores locales, tostados artesanalmente para resaltar los sabores únicos de cada origen.</p>
             </div>
             <div class="col-lg-6">
                 <div class="text-center">
@@ -89,6 +131,7 @@
         </div>
     </div>
 </section>
+
 
 <!--Sección de contacto -->
 <section id="contact" class="py-5">
@@ -137,6 +180,7 @@
     </div>
 </section>
 
+
 <!--Footer -->
 <footer>
     <div class="container">
@@ -145,8 +189,49 @@
 </footer>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
+<!-- Modal de voto -->
+<div class="modal fade" id="votoModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h4>¡Gracias por tu opinión! ☕</h4>
+      <p>Tu calificación ha sido registrada.</p>
+      <button class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- JS Votos y Modal -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Cargar los votos guardados
+    document.querySelectorAll(".votos").forEach(v => {
+        let id = v.id.replace("votos-", "");
+        let votosGuardados = localStorage.getItem(`votos-${id}`) || 0;
+        v.innerText = `Votos: ${votosGuardados}`;
+    });
+
+    // Manejar estrellas
+    document.querySelectorAll(".star-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+
+            let container = this.closest(".stars");
+            let product = container.dataset.product;
+
+            let id = `votos-${product}`;
+            let votosActuales = parseInt(localStorage.getItem(id) || 0) + 1;
+
+            localStorage.setItem(id, votosActuales);
+
+            document.getElementById(id).innerText = `Votos: ${votosActuales}`;
+
+            // Mostrar modal
+            let modal = new bootstrap.Modal(document.getElementById('votoModal'));
+            modal.show();
+        });
+    });
+});
+</script>
 
 {% endblock %}
