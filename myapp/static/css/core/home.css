@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #2c3e50;
-    --accent-color: #d4af37;
-    --text-light: #7f8c8d;
-    --bg-light: #f8f9fa;
+    --primary-color: #3b2f2f; /* Espresso */
+    --accent-color: #b87333; /* Cobre */
+    --text-light: #a69f9f; /* Gris cálido */
+    --bg-light: #faf3eb;  /* Crema suave */
 }
 
 body {
@@ -10,6 +10,7 @@ body {
     line-height: 1.6;
     color: var(--primary-color);
 }
+
 
 .navbar {
     padding: 1rem 0;
@@ -37,6 +38,7 @@ body {
     color: var(--accent-color) !important;
     text-decoration: underline;
 }
+
 
 .hero {
     height: 100vh;
@@ -153,5 +155,3 @@ footer {
 .menu-item:last-child {
     border-bottom: none;
 }
-
-
