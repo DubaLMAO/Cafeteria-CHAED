@@ -91,7 +91,7 @@ body {
 .card {
     border: none;
     border-radius: 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10); 
     transition: transform 0.3s ease;
 }
 
