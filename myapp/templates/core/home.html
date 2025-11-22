@@ -5,7 +5,7 @@
 {% block content %} {#Se despliega el contenido del home#}
 
 <!--Hero Section -->
-<section id="home" class="hero" >
+<section id="home" class="hero">
     <div class="container h-100 d-flex align-items-center justify-content-center text-center">
         <div class="row">
             <div class="col-lg-10">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>
@@ -116,6 +116,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Newsletter -->
             <div class="col-lg-4">
                 <div class="contact-info p-4">
                     <h3>Síguenos</h3>
@@ -124,18 +126,38 @@
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                     </div>
+
                     <hr style="border-color: rgba(255,255,255,0.2);">
+
                     <h4>Newsletter</h4>
                     <p>Recibe nuestras ofertas especiales</p>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Tu email">
-                        <button class="btn btn-primary">Suscribir</button>
-                    </div>
+
+                    <!-- FORMULARIO FUNCIONAL -->
+                    <form id="newsletter-form" method="POST" novalidate>
+                        {% csrf_token %}
+                        <div class="input-group has-validation">
+                            <input type="email" class="form-control" placeholder="Tu email" name="correo"
+                                id="newsletter-email" autocomplete="email" required>
+                            <button class="btn btn-primary" type="submit">
+                                Suscribir
+                            </button>
+                            <div class="invalid-feedback">
+                                Ingresa un correo válido.
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- MENSAJE DE ÉXITO -->
+                    <p id="success-message" class="text-success mt-2" style="display:none;">
+                        ¡Gracias por suscribirte! 🎉
+                    </p>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 
 <!--Footer -->
@@ -151,6 +173,48 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("newsletter-form");
+    const emailInput = document.getElementById("newsletter-email");
+    const successMsg = document.getElementById("success-message");
+
+    // Expresión regular simple y fiable para emails
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault(); // siempre prevenimos el envío real para controlar la UI
+
+        // Limpiar espacios en blanco al inicio/final
+        const email = emailInput.value.trim();
+        emailInput.value = email;
+
+        // Validar con regex
+        const isValid = emailRegex.test(email);
+
+        // Limpiar estados previos
+        emailInput.classList.remove("is-valid", "is-invalid");
+        successMsg.style.display = "none";
+
+        if (!isValid) {
+            // Mostrar error
+            emailInput.classList.add("is-invalid");
+            // Aseguramos que el feedback de bootstrap se muestre
+            form.classList.add("was-validated");
+        } else {
+            // Mostrar éxito
+            emailInput.classList.add("is-valid");
+            successMsg.style.display = "block";
+
+            // Opcional: limpiar formulario y clases de validación
+            form.reset();
+            // Si quieres que desaparezca la marca de validación tras el reset:
+            form.classList.remove("was-validated");
+        }
+    });
+});
+</script>
+
+
 
 {% endblock %}
-
