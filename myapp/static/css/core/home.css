@@ -162,9 +162,10 @@ body {
     color: var(--accent-color);
 }
 
+
 footer {
-    background: #1a252f;
+    background-color: var(--primary-color);
     color: white;
-    padding: 2rem 0;
+    padding: 2rem 2rem;
     text-align: center;
 }
