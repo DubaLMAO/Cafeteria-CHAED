@@ -110,9 +110,31 @@ body {
     font-size: 1.1rem;
 }
 
+.menu-item {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
 .about-section {
     background: var(--bg-light);
 }
+
+
+.fas.fa-coffee {
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
 
 .contact-info {
     background: var(--primary-color);
@@ -145,13 +167,4 @@ footer {
     color: white;
     padding: 2rem 0;
     text-align: center;
-}
-
-.menu-item {
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.menu-item:last-child {
-    border-bottom: none;
 }
