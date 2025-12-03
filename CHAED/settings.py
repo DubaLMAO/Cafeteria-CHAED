@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = ['https://chaed.up.railway.app']
 
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+
 # Application definition
 
 INSTALLED_APPS = [
