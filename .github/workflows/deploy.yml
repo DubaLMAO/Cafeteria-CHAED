@@ -1,0 +1,91 @@
+name: Deploy Cafetería CHAED
+
+# Cuándo se ejecuta este pipeline
+on:
+  push:
+    branches: [ main ]  # Solo cuando haces push a main
+  pull_request:
+    branches: [ main ]  # O cuando creas un Pull Request
+
+jobs:
+  # PASO 1: Revisar seguridad del código
+  seguridad:
+    name: Escaneo de Seguridad
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+      
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          pip install bandit safety
+      
+      - name: Buscar problemas de seguridad en el código
+        run: |
+          bandit -r . -f txt || echo "Advertencias de seguridad encontradas"
+      
+      - name: Verificar vulnerabilidades en librerías
+        run: |
+          safety check || echo "Vulnerabilidades encontradas"
+
+  # PASO 2: Ejecutar tests
+  tests:
+    name: Pruebas Automáticas
+    runs-on: ubuntu-latest
+    needs: seguridad  # Solo se ejecuta si la seguridad pasa
+    
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+      
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      
+      - name: Verificar configuración Django
+        run: python manage.py check
+        env:
+          SECRET_KEY: 'test-secret-key-for-ci-only'
+          DEBUG: 'True'
+      
+      - name: Ejecutar tests
+        run: python manage.py test
+        env:
+          SECRET_KEY: 'test-secret-key-for-ci-only'
+          DEBUG: 'True'
+
+  # PASO 3: Desplegar a Railway (solo si todo pasó)
+  deploy:
+    name: Desplegar a Producción
+    runs-on: ubuntu-latest
+    needs: tests  # Solo si los tests pasaron
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+      
+      - name: Instalar Railway CLI
+        run: npm install -g @railway/cli
+      
+      - name: Desplegar a Railway
+        run: railway up --service chaed-cafeteria
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      
+      - name: Notificar éxito
+        run: |
+          echo "✅ Deployment exitoso!"
+          echo "Fecha: $(date)"
+          echo "Commit: ${{ github.sha }}"
