@@ -42,7 +42,7 @@ body {
 
 .hero {
     height: 100vh;
-    background: url('../../img/1.jpg');
+    background: url('../../img/1.webp');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -90,7 +90,7 @@ body {
 
 .card {
     border: none;
-    border-radius: 15px;
+    border-radius: 0;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10); 
     transition: transform 0.3s ease;
 }
@@ -166,7 +166,6 @@ body {
 footer {
     background-color: var(--primary-color);
     color: white;
-    padding: 2rem ;
+    padding: 2rem 2rem;
     text-align: center;
 }
-
