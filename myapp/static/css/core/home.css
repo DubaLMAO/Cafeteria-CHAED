@@ -42,7 +42,7 @@ body {
 
 .hero {
     height: 100vh;
-    background: url('../../img/1.jpg');
+    background: url('../../img/1.webp');
     background-size: cover;
     background-position: center;
     display: flex;
