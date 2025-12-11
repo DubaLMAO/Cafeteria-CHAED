@@ -1,0 +1,75 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Términos y Condiciones - Café CHAED{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Términos y Condiciones</h1>
+        <p class="text-muted text-center">Última actualización: Enero 2025</p>
+
+        <hr>
+
+        <h3>1. Aceptación de los Términos</h3>
+        <p>
+            Al acceder y utilizar el sitio web de <strong>Café CHAED</strong>, aceptas cumplir con estos Términos y 
+            Condiciones. Si no estás de acuerdo, te pedimos que no uses nuestro sitio.
+        </p>
+
+        <h3>2. Uso del Sitio Web</h3>
+        <p>
+            Este sitio tiene como finalidad brindar información sobre nuestros productos, promociones y servicios.
+            Está prohibido:
+        </p>
+        <ul>
+            <li>Usar el sitio para actividades ilegales.</li>
+            <li>Intentar acceder de manera no autorizada a servidores o bases de datos.</li>
+            <li>Modificar o distribuir contenido sin permiso.</li>
+        </ul>
+
+        <h3>3. Productos y Precios</h3>
+        <p>
+            Los precios mostrados pueden cambiar sin previo aviso. Aunque intentamos mantener la información actualizada,
+            podría existir alguna variación en el menú físico del establecimiento.
+        </p>
+
+        <h3>4. Propiedad Intelectual</h3>
+        <p>
+            Todo el contenido del sitio, incluyendo texto, imágenes, logotipos y diseño, pertenece a 
+            <strong>Café CHAED</strong>. Queda prohibida su reproducción sin autorización.
+        </p>
+
+        <h3>5. Protección de Datos</h3>
+        <p>
+            El uso de tus datos personales se rige por nuestra 
+            <a href="{% url 'privacy_policy' %}">Política de Privacidad</a>, la cual explica cómo recopilamos, usamos y protegemos tu información.
+        </p>
+
+        <h3>6. Enlaces a Terceros</h3>
+        <p>
+            Nuestro sitio puede contener enlaces a redes sociales u otras páginas. No somos responsables del contenido
+            ni de las políticas de dichos sitios externos.
+        </p>
+
+        <h3>7. Modificaciones</h3>
+        <p>
+            Café CHAED puede actualizar estos términos cuando sea necesario. Cualquier cambio será publicado aquí,
+            por lo que te recomendamos revisarlos periódicamente.
+        </p>
+
+        <h3>8. Contacto</h3>
+        <p>
+            Si tienes dudas sobre estos Términos y Condiciones, puedes escribirnos a:  
+            <strong>chaed@gmail.com</strong>
+        </p>
+
+        <hr>
+
+        <p class="text-center mt-4">
+            <a href="{% url 'home' %}" class="btn btn-primary">Volver al inicio</a>
+        </p>
+    </div>
+</section>
+
+{% endblock %}

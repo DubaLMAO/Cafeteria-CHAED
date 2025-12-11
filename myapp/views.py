@@ -11,3 +11,10 @@ def home(request):
     snacks = Producto.objects.filter(categoria='SNACK')
     return render(request, 'core/home.html', {'cafes': cafes, 'snacks': snacks})
 
+@cache_page(60 * 15)  
+def privacy_policy(request):
+    return render(request, 'core/paginas/privacy_policy.html')
+
+
+def terms_conditions(request):
+    return render(request, 'core/paginas/terms_conditions.html')
