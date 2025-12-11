@@ -1,0 +1,78 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Política de Privacidad - Café CHAED{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="container">
+        <h1 class="section-title text-center mb-4">Política de Privacidad</h1>
+        <p class="lead text-center mb-5">
+            En Café CHAED valoramos tu confianza. Esta política explica cómo recopilamos, usamos y protegemos tu
+            información.
+        </p>
+
+        <div class="card p-4 shadow-sm">
+            <h3 class="mb-3">1. Información que recopilamos</h3>
+            <p>
+                Recopilamos únicamente la información necesaria para brindarte una mejor experiencia, incluyendo:
+            </p>
+            <ul>
+                <li>Nombre y correo electrónico (si te suscribes a nuestro newsletter)</li>
+                <li>Información de contacto que proporciones en formularios</li>
+                <li>Datos de navegación como dirección IP, tipo de dispositivo y cookies</li>
+            </ul>
+
+            <h3 class="mt-4 mb-3">2. Uso de tu información</h3>
+            <p>Utilizamos tus datos para:</p>
+            <ul>
+                <li>Enviarte promociones y novedades de Café CHAED</li>
+                <li>Mejorar la calidad de nuestros servicios</li>
+                <li>Optimizar la navegación en nuestro sitio web</li>
+            </ul>
+
+            <h3 class="mt-4 mb-3">3. Cookies</h3>
+            <p>
+                Este sitio utiliza cookies para mejorar tu experiencia. Puedes desactivarlas en la configuración de tu
+                navegador,
+                pero algunas funciones pueden dejar de funcionar correctamente.
+            </p>
+
+            <h3 class="mt-4 mb-3">4. Protección de datos</h3>
+            <p>
+                Implementamos medidas técnicas y administrativas para proteger tu información contra accesos no
+                autorizados.
+                Tu información nunca será vendida ni compartida sin tu consentimiento.
+            </p>
+
+            <h3 class="mt-4 mb-3">5. Derechos del usuario</h3>
+            <p>De acuerdo con la ley mexicana de protección de datos, tienes derecho a:</p>
+            <ul>
+                <li>Acceder a tus datos</li>
+                <li>Rectificarlos o actualizarlos</li>
+                <li>Solicitar su eliminación</li>
+                <li>Retirar tu consentimiento en cualquier momento</li>
+            </ul>
+
+            <h3 class="mt-4 mb-3">6. Contacto</h3>
+            <p>
+                Si tienes dudas sobre esta política o deseas ejercer tus derechos, contáctanos:
+            </p>
+            <p class="fw-bold">
+                Email: chaed@gmail.com<br>
+                Teléfono: +52 733 123 4567
+            </p>
+
+            <p class="mt-4 text-muted">
+                Última actualización: Enero 2025
+            </p>
+
+
+            <p class="text-center mt-4">
+                <a href="{% url 'home' %}" class="btn btn-primary">Volver al inicio</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

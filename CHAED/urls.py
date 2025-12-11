@@ -21,5 +21,7 @@ from myapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('privacidad/', views.privacy_policy, name='privacy_policy'),
+    path('terminos-y-condiciones/', views.terms_conditions, name='terms_conditions'),
 
 ]

@@ -165,55 +165,83 @@
     <div class="container">
         <p> &copy; 2025 Café CHAED.</p>
         <p> &copy; Todos los derechos reservados.</p>
-
+        <a style="color: white;" href="{% url 'privacy_policy' %}">Política de Privacidad</a>
+        <a style="color: white;" href="{% url 'terms_conditions' %}">Términos y Condiciones</a>
     </div>
 </footer>
 
+
+<div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-content">
+        <p>
+            Utilizamos cookies para mejorar tu experiencia en Café CHAED.
+            Al continuar navegando, aceptas nuestro uso de cookies.
+        </p>
+        <button id="accept-cookies" class="btn btn-primary btn-sm">Aceptar</button>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("newsletter-form");
-    const emailInput = document.getElementById("newsletter-email");
-    const successMsg = document.getElementById("success-message");
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("newsletter-form")
+        const emailInput = document.getElementById("newsletter-email");
+        const successMsg = document.getElementById("success-message");
 
-    // Expresión regular simple y fiable para emails
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Expresión regular simple y fiable para emails
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault(); // siempre prevenimos el envío real para controlar la UI
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // siempre prevenimos el envío real para controlar la UI
 
-        // Limpiar espacios en blanco al inicio/final
-        const email = emailInput.value.trim();
-        emailInput.value = email;
+            // Limpiar espacios en blanco al inicio/final
+            const email = emailInput.value.trim();
+            emailInput.value = email;
 
-        // Validar con regex
-        const isValid = emailRegex.test(email);
+            // Validar con regex
+            const isValid = emailRegex.test(email);
 
-        // Limpiar estados previos
-        emailInput.classList.remove("is-valid", "is-invalid");
-        successMsg.style.display = "none";
+            // Limpiar estados previos
+            emailInput.classList.remove("is-valid", "is-invalid");
+            successMsg.style.display = "none";
 
-        if (!isValid) {
-            // Mostrar error
-            emailInput.classList.add("is-invalid");
-            // Aseguramos que el feedback de bootstrap se muestre
-            form.classList.add("was-validated");
-        } else {
-            // Mostrar éxito
-            emailInput.classList.add("is-valid");
-            successMsg.style.display = "block";
+            if (!isValid) {
+                // Mostrar error
+                emailInput.classList.add("is-invalid");
+                // Aseguramos que el feedback de bootstrap se muestre
+                form.classList.add("was-validated");
+            } else {
+                // Mostrar éxito
+                emailInput.classList.add("is-valid");
+                successMsg.style.display = "block";
 
-            // Opcional: limpiar formulario y clases de validación
-            form.reset();
-            // Si quieres que desaparezca la marca de validación tras el reset:
-            form.classList.remove("was-validated");
-        }
+                // Opcional: limpiar formulario y clases de validación
+                form.reset();
+                // Si quieres que desaparezca la marca de validación tras el reset:
+                form.classList.remove("was-validated");
+            }
+        });
     });
-});
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const banner = document.getElementById("cookie-banner");
+        const acceptBtn = document.getElementById("accept-cookies");
+
+        // Si NO existe el consentimiento en localStorage → Mostrar banner
+        if (!localStorage.getItem("cookiesAccepted")) {
+            banner.style.display = "block";
+        }
+
+        // Aceptar cookies
+        acceptBtn.addEventListener("click", function () {
+            localStorage.setItem("cookiesAccepted", "true");
+            banner.style.display = "none";
+        });
+    });
 </script>
+
 
 
 
